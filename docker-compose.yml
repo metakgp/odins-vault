@@ -1,6 +1,7 @@
 services:
   odins_vault:
     build: "."
+    restart: always
     networks:
       metaploy-network:
         aliases:
