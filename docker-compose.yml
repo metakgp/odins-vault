@@ -1,24 +1,26 @@
 services:
-  odins_vault:
-    build: "."
-    restart: always
-    networks:
-      metaploy-network:
-        aliases:
-          - odins_vault
-    volumes:
-      - nginx-config-volume:/etc/nginx/sites-enabled
-      - odins-vault:/srv/static
+    odins_vault:
+        image: metakgporg/odins-vault
+        container_name: odins-vault
+        build: .
+        networks:
+            metaploy-network:
+                aliases:
+                    - odins_vault
+        volumes:
+            - nginx-config-volume:/etc/nginx/sites-enabled
+            - odins-vault:/srv/static
+        restart: always
 
 networks:
-  metaploy-network:
-    external: true
-    name: metaploy-network
+    metaploy-network:
+        external: true
+        name: metaploy-network
 
 volumes:
-  nginx-config-volume:
-    external: true
-    name: metaploy-nginx-config-volume
-  odins-vault:
-    external: true
-    name: odins-vault
+    nginx-config-volume:
+        external: true
+        name: metaploy-nginx-config-volume
+    odins-vault:
+        external: true
+        name: odins-vault
